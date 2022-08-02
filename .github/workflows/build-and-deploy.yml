@@ -1,4 +1,4 @@
-name: Deployment pipeline
+name: Build and deploy
 
 on:
   push:
@@ -9,12 +9,12 @@ on:
 
 jobs:
 
-  build:
+  build-and-deplot:
 
     runs-on: ubuntu-latest
 
     steps:
     - name: Checkout
       uses: actions/checkout@v3
-    - name: Build omnom-backend
+    - name: Build backend
       run: docker build omnom-backend/. --tag omnom-backend:$(date +%s)
