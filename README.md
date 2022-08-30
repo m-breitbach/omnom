@@ -19,10 +19,9 @@ docker-compose up
 
 ## Links
 ### Database
-- https://geshan.com.np/blog/2021/12/docker-postgres/
 - https://vladmihalcea.com/the-best-way-to-map-an-enum-type-with-jpa-and-hibernate/
-- https://stackoverflow.com/questions/41637505/how-to-persist-data-in-a-dockerized-postgres-database-using-volumes
 - https://herewecode.io/blog/create-a-postgresql-database-using-docker-compose/
+- https://stackoverflow.com/questions/35069027/docker-wait-for-postgresql-to-be-running
 ### Backend
 - https://developers.redhat.com/articles/2022/02/03/build-rest-api-ground-quarkus-20
 - https://enterprisecraftsmanship.com/posts/having-the-domain-model-separate-from-the-persistence-model/
