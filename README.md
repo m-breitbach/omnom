@@ -1,13 +1,34 @@
 # omnom
 A web application that manages cooking recepies, suggests meals for the upcoming week, and adds the required ingredients to a shopping list.
 
+## Setup on server
+### Docker
+```
+curl -fsSL https://get.docker.com -o get-docker.sh
+sudo sh get-docker.sh
+rm get-docker.sh
+sudo usermod -aG docker ${USER}
+```
+
 ## Flows (omnom-backend)
 ```
-pipenv install flask
-docker build -t omnom-backend .
-docker run --name omnom-backend -d -p 80:80 omnom-backend
+mvn package
+docker build -f omnom-backend/src/main/docker/Dockerfile.jvm -t omnom-backend ./omnom-backend
+docker-compose up
 ```
 
 ## Links
-[https://auth0.com/blog/developing-restful-apis-with-python-and-flask/]
-[https://milanwittpohl.com/projects/tutorials/Full-Stack-Web-App/dockerizing-our-front-and-backend]
+https://developers.redhat.com/articles/2022/02/03/build-rest-api-ground-quarkus-20
+https://www.baeldung.com/jpa-attribute-converters
+https://www.jpa-buddy.com/blog/lombok-and-jpa-what-may-go-wrong/
+https://supakon-k.medium.com/how-to-fix-mapstruct-in-spring-boot-when-return-null-object-4ead44279af0
+https://vladmihalcea.com/the-best-way-to-map-an-enum-type-with-jpa-and-hibernate/
+https://enterprisecraftsmanship.com/posts/having-the-domain-model-separate-from-the-persistence-model/
+https://howtodoinjava.com/resteasy/resteasy-exceptionmapper-example/
+https://stackoverflow.com/questions/41637505/how-to-persist-data-in-a-dockerized-postgres-database-using-volumes
+https://milanwittpohl.com/projects/tutorials/Full-Stack-Web-App/dockerizing-our-front-and-backend
+https://vepo.github.io/posts/using-bean-Validation-on-quarkus
+https://earthly.dev/blog/youre-using-docker-compose-wrong/
+https://stackoverflow.com/questions/58047984/why-do-i-need-to-declare-env-file-explicitely-in-docker-compose-yml
+https://geshan.com.np/blog/2021/12/docker-postgres/
+https://herewecode.io/blog/create-a-postgresql-database-using-docker-compose/

@@ -1,0 +1,14 @@
+quarkus:
+  http:
+    port: 8080
+  hibernate-orm:
+    database:
+      generation: none
+
+mp:
+  openapi:
+    extensions:
+      smallrye:
+        info:
+          title: OmNom Backend API
+          version: 0.1
