@@ -1,16 +1,15 @@
 # omnom
-A web application that manages cooking recepies, suggests meals for the upcoming week, and adds the required ingredients to a shopping list.
+A web application that manages cooking recepies, suggests meals for the upcoming week, and adds the required ingredients to a shopping list. Besides the real use case, to me it serves as a learning project for how to set up a full stack dockerized web application.
 
-## Setup on server
-### Docker
+## Flows
+### Docker setup
 ```
 curl -fsSL https://get.docker.com -o get-docker.sh
 sudo sh get-docker.sh
 rm get-docker.sh
 sudo usermod -aG docker ${USER}
 ```
-
-## Flows (omnom-backend)
+### Run project locally
 ```
 mvn package
 docker build -f omnom-backend/src/main/docker/Dockerfile.jvm -t omnom-backend ./omnom-backend
