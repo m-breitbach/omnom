@@ -23,9 +23,14 @@ jobs:
         distribution: adopt
     - name: Checkout
       uses: actions/checkout@v3
-    - name: Build
+    - name: Build Java
       run: mvn package
-    - name: Dockerize
+    - name: Build Docker
       run: docker build -f src/main/docker/Dockerfile.jvm -t omnom-backend .
+    - name: Push Docker
+      run: |
+        docker login --username ${{secrets.DOCKER_REGISTRY_USERNAME}} --password ${{secrets.DOCKER_REGISTRY_PASSWORD}}
+        docker tag omnom-backend ${{secrets.DOCKER_REGISTRY_URL}}/omnom-backend
+        docker push ${{secrets.DOCKER_REGISTRY_URL}}/omnom-backend
         
         
