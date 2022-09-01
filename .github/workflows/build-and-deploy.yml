@@ -21,9 +21,9 @@ jobs:
         distribution: adopt
     - name: Checkout
       uses: actions/checkout@v3
-    - name: Build backend
-      run: 
-        mvn package
-        docker build -f omnom-backend/src/main/docker/Dockerfile.jvm -t omnom-backend ./omnom-backend
+    - name: Build
+      run: mvn package
+    - name: Dockerize
+      run: docker build -f omnom-backend/src/main/docker/Dockerfile.jvm -t omnom-backend ./omnom-backend
         
         
