@@ -40,4 +40,4 @@ docker-compose up
 ### Deployment
 - https://docs.docker.com/registry/deploying/
 - https://www.theserverside.com/blog/Coffee-Talk-Java-News-Stories-and-Opinions/GitHub-Actions-Secrets-Example-Token-Tutorial
-- https://stackoverflow.com/a/45312996
+- https://stackoverflow.com/questions/28349392/how-to-push-a-docker-image-to-a-private-repository
