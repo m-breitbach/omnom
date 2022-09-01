@@ -9,6 +9,10 @@ sudo sh get-docker.sh
 rm get-docker.sh
 sudo usermod -aG docker ${USER}
 ```
+### Docker registry setup
+```
+docker pull registry
+```
 ### Run project locally
 ```
 mvn package
@@ -33,3 +37,7 @@ docker-compose up
 - https://milanwittpohl.com/projects/tutorials/Full-Stack-Web-App/dockerizing-our-front-and-backend
 - https://earthly.dev/blog/youre-using-docker-compose-wrong/
 - https://stackoverflow.com/questions/58047984/why-do-i-need-to-declare-env-file-explicitely-in-docker-compose-yml
+### Deployment
+- https://docs.docker.com/registry/deploying/
+- https://www.theserverside.com/blog/Coffee-Talk-Java-News-Stories-and-Opinions/GitHub-Actions-Secrets-Example-Token-Tutorial
+- https://stackoverflow.com/a/45312996
