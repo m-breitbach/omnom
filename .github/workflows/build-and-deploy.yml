@@ -18,6 +18,7 @@ jobs:
       uses: actions/setup-java@v3
       with:
         java-version: 17
+        distribution: adopt
     - name: Checkout
       uses: actions/checkout@v3
     - name: Build backend
