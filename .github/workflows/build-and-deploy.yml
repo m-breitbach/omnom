@@ -14,7 +14,15 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+    - name: Set up JDK 17
+      uses: actions/setup-java@v3
+      with:
+        java-version: 17
     - name: Checkout
       uses: actions/checkout@v3
     - name: Build backend
-      run: docker build omnom-backend/. --tag omnom-backend:$(date +%s)
+      run: 
+        mvn package
+        docker build -f omnom-backend/src/main/docker/Dockerfile.jvm -t omnom-backend ./omnom-backend
+        
+        
