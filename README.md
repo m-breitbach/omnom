@@ -2,22 +2,34 @@
 A web application that manages cooking recepies, suggests meals for the upcoming week, and adds the required ingredients to a shopping list. Besides the real use case, to me it serves as a learning project for how to set up a full stack dockerized web application.
 
 ## Flows
-### Docker setup
+### Run backend locally
+```
+jabba use openjdk@1.17.0 
+mvn -f omnom-backend/pom.xml package  
+docker build -f omnom-backend/src/main/docker/Dockerfile.jvm -t omnom-backend ./omnom-backend
+docker-compose up
+```
+### Docker setup on server
 ```
 curl -fsSL https://get.docker.com -o get-docker.sh
 sudo sh get-docker.sh
 rm get-docker.sh
 sudo usermod -aG docker ${USER}
 ```
-### Docker registry setup
+### Docker registry setup on server
 ```
 docker pull registry
-```
-### Run project locally
-```
-mvn package
-docker build -f omnom-backend/src/main/docker/Dockerfile.jvm -t omnom-backend ./omnom-backend
-docker-compose up
+mkdir certs
+cp /etc/letsencrypt/live/example.com/* certs
+docker run -d \
+  --restart=always \
+  --name registry \
+  -v "$(pwd)"/certs:/certs \
+  -e REGISTRY_HTTP_ADDR=0.0.0.0:5000 \
+  -e REGISTRY_HTTP_TLS_CERTIFICATE=/certs/fullchain.pem \
+  -e REGISTRY_HTTP_TLS_KEY=/certs/privkey.pem \
+  -p 5000:5000 \
+  registry
 ```
 
 ## Links
