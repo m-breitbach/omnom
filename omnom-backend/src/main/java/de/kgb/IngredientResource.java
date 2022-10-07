@@ -43,7 +43,7 @@ public class IngredientResource {
     }
 
     @GET
-    @Path("/{ingredientId}")
+    @Path("/{ingredientID}")
     @APIResponse(
         responseCode = "200",
         description = "Get ingredient by ID",
@@ -57,9 +57,9 @@ public class IngredientResource {
         description = "No ingredient found for provided ID",
         content = @Content(mediaType = MediaType.APPLICATION_JSON)
     )
-    public Response getById(@Parameter(required = true) @PathParam("ingredientId") Integer ingredientId) {
+    public Response getById(@Parameter(required = true) @PathParam("ingredientID") Integer ingredientID) {
 
-        return ingredientService.findById(ingredientId)
+        return ingredientService.findById(ingredientID)
             .map(ingredient -> Response.ok(ingredient).build())
             .orElse(Response.status(Response.Status.NOT_FOUND).build());
     }
@@ -90,13 +90,13 @@ public class IngredientResource {
 
         ingredientService.save(ingredient);
         return Response
-            .created(uriInfo.getAbsolutePathBuilder().path(ingredient.getIngredientId().toString()).build())
+            .created(uriInfo.getAbsolutePathBuilder().path(ingredient.getIngredientID().toString()).build())
             .entity(ingredient) // TODO: why put domain here?
             .build();
     }
 
     @PUT
-    @Path("/{ingredientId}")
+    @Path("/{ingredientID}")
     @APIResponse(
         responseCode = "204",
         description = "Ingredient updated",
@@ -121,10 +121,10 @@ public class IngredientResource {
         content = @Content(mediaType = MediaType.APPLICATION_JSON)
     )
     public Response put(
-        @Parameter(required = true) @PathParam("ingredientId") Integer ingredientId,
+        @Parameter(required = true) @PathParam("ingredientID") Integer ingredientID,
         @NotNull @Valid Ingredient ingredient
     ) {
-        if (!Objects.equals(ingredientId, ingredient.getIngredientId())) {
+        if (!Objects.equals(ingredientID, ingredient.getIngredientID())) {
             throw new ServiceException("Ingredient ID mismatch");
         }
 

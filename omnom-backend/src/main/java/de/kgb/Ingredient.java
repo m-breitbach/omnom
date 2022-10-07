@@ -9,7 +9,7 @@ import javax.validation.constraints.NotNull;
 public class Ingredient {
 
     @NotNull
-    private Integer ingredientId;
+    private Integer ingredientID;
 
     @NotBlank
     private String designation;

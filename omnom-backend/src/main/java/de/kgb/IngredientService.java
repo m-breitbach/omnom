@@ -26,10 +26,10 @@ public class IngredientService {
         return mapper.toDomainList(repository.findAll().list());
     }
 
-    public Optional<Ingredient> findById(@NonNull Integer ingredientId) {
-        log.info("IngredientService::findById({})", ingredientId);
+    public Optional<Ingredient> findById(@NonNull Integer ingredientID) {
+        log.info("IngredientService::findById({})", ingredientID);
 
-        return repository.findByIdOptional(ingredientId)
+        return repository.findByIdOptional(ingredientID)
                 .map(mapper::toDomain);
     }
 
@@ -45,9 +45,9 @@ public class IngredientService {
     @Transactional
     public void update(@Valid Ingredient ingredient) {
 
-        Optional<IngredientEntity> optional = repository.findByIdOptional(ingredient.getIngredientId());
+        Optional<IngredientEntity> optional = repository.findByIdOptional(ingredient.getIngredientID());
         if ( optional.isEmpty() ) {
-            throw new ServiceException("No ingredient found for ID [%s]", ingredient.getIngredientId());
+            throw new ServiceException("No ingredient found for ID [%s]", ingredient.getIngredientID());
         }
 
         IngredientEntity entity = optional.get();

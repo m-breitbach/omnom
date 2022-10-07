@@ -30,7 +30,7 @@ class IngredientResourceTest {
             .then().statusCode(201)
             .extract().as(Ingredient.class);
         Ingredient got = given()
-            .when().get("/{ingredientId}", saved.getIngredientId())
+            .when().get("/{ingredientID}", saved.getIngredientID())
             .then().statusCode(200)
             .extract().as(Ingredient.class);
         assertThat(saved).isEqualTo(got);
@@ -39,7 +39,7 @@ class IngredientResourceTest {
     @Test
     void getById_ShouldFailOnMissingObject() {
         given()
-            .when().get("/{ingredientId}", 99999)
+            .when().get("/{ingredientID}", 99999)
             .then().statusCode(404);
     }
 
@@ -52,7 +52,7 @@ class IngredientResourceTest {
             .post()
             .then().statusCode(201)
             .extract().as(Ingredient.class);
-        assertThat(saved.getIngredientId()).isNotNull();
+        assertThat(saved.getIngredientID()).isNotNull();
     }
 
     @Disabled
@@ -80,7 +80,7 @@ class IngredientResourceTest {
         given()
             .contentType(ContentType.JSON)
             .body(saved)
-            .put("/{ingredientId}", saved.getIngredientId())
+            .put("/{ingredientID}", saved.getIngredientID())
             .then().statusCode(204);
     }
 
@@ -98,7 +98,7 @@ class IngredientResourceTest {
         given()
             .contentType(ContentType.JSON)
             .body(saved)
-            .put("/{ingredientId}", saved.getIngredientId())
+            .put("/{ingredientID}", saved.getIngredientID())
             .then().statusCode(400);
     }
 
@@ -111,11 +111,11 @@ class IngredientResourceTest {
             .post()
             .then().statusCode(201)
             .extract().as(Ingredient.class);
-        saved.setIngredientId(saved.getIngredientId() + 1);
+        saved.setIngredientID(saved.getIngredientID() + 1);
         given()
             .contentType(ContentType.JSON)
             .body(saved)
-            .put("/{ingredientId}", saved.getIngredientId())
+            .put("/{ingredientID}", saved.getIngredientID())
             .then().statusCode(400);
     }
 
