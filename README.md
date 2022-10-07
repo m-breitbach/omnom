@@ -2,13 +2,6 @@
 A web application that manages cooking recepies, suggests meals, and adds the required ingredients to a shopping list. Beyond its real use case, to me it serves as a learning project for how to set up a full stack dockerized web application.
 
 ## Flows
-### Run backend locally
-```
-jabba use openjdk@1.17.0 
-mvn -f omnom-backend/pom.xml package  
-docker build -f omnom-backend/src/main/docker/Dockerfile.jvm -t omnom-backend ./omnom-backend
-docker-compose up
-```
 ### Docker setup on server
 ```
 curl -fsSL https://get.docker.com -o get-docker.sh
@@ -20,7 +13,9 @@ sudo usermod -aG docker ${USER}
 ```
 docker pull registry
 mkdir certs
-cp /etc/letsencrypt/live/example.com/* certs
+sudo cp /etc/letsencrypt/live/example.com/* certs
+mkdir auth
+docker run --entrypoint htpasswd httpd -Bbn user password > auth/htpasswd
 docker run -d \
   --restart=always \
   --name registry \
@@ -30,6 +25,18 @@ docker run -d \
   -e REGISTRY_HTTP_TLS_KEY=/certs/privkey.pem \
   -p 5000:5000 \
   registry
+```
+### Run backend locally
+```
+jabba use openjdk@1.17.0 
+mvn -f omnom-backend/pom.xml package  
+docker build -f omnom-backend/src/main/docker/Dockerfile.jvm -t omnom-backend ./omnom-backend
+docker-compose up
+```
+### Push to registry
+```
+docker tag omnom-backend:latest example.com:5000/omnom-backend 
+docker push example.com:5000/omnom-backend 
 ```
 
 ## Links
@@ -45,6 +52,9 @@ docker run -d \
 - https://vepo.github.io/posts/using-bean-Validation-on-quarkus
 - https://supakon-k.medium.com/how-to-fix-mapstruct-in-spring-boot-when-return-null-object-4ead44279af0
 - https://howtodoinjava.com/resteasy/resteasy-exceptionmapper-example/
+### Frontend
+- https://www.syncfusion.com/blogs/post/how-to-build-a-crud-app-in-angular.aspx
+- https://docs.npmjs.com/downloading-and-installing-packages-globally
 ### Docker
 - https://milanwittpohl.com/projects/tutorials/Full-Stack-Web-App/dockerizing-our-front-and-backend
 - https://earthly.dev/blog/youre-using-docker-compose-wrong/
