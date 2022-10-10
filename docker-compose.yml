@@ -1,16 +1,18 @@
-version: '2.4'
+version: '2.4' # version 3 doesn't support depends_on.option
 
 services:
-
   omnom-db:
     image: postgres:latest
     restart: always
+    env_file: .env
     ports:
-      - 127.0.0.1:${OMNOM_DB_PORT}:${OMNOM_DB_PORT}
+      - "127.0.0.1:${OMNOM_DB_PORT}:5432"
     volumes:
-      - ./omnom-db:/var/lib/postgresql/data
+      - ./omnom-db/config:/db-config
+      - ./omnom-db/init:/docker-entrypoint-initdb.d
+      - ./omnom-db/omnom-db-testdata:/var/lib/postgresql/data
     healthcheck:
-        test: [ "CMD-SHELL", "pg_isready -U ${POSTGRES_USERNAME}" ]
+        test: [ "CMD-SHELL", "pg_isready -U ${POSTGRES_USER}" ]
         interval: 1s
         timeout: 1s
         retries: 60
@@ -19,7 +21,12 @@ services:
     image: omnom-backend:latest
     env_file: .env
     ports:
-      - ${OMNOM_BACKEND_PORT}:${OMNOM_BACKEND_PORT}
+      - "${OMNOM_BACKEND_PORT}:8080"
     depends_on:
       omnom-db:
         condition: service_healthy
+
+  omnom-frontend:
+    image: omnom-frontend:latest
+    ports:
+      - "${OMNOM_FRONTEND_PORT}:80"

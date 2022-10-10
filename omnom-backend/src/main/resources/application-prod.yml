@@ -1,7 +1,7 @@
 quarkus:
   datasource:
     db-kind: postgresql
-    username: ${POSTGRES_USERNAME}
+    username: ${POSTGRES_USER}
     password: ${POSTGRES_PASSWORD}
     jdbc:
       url: jdbc:postgresql://omnom-db:${OMNOM_DB_PORT}/${POSTGRES_DB}
