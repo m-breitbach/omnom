@@ -1,0 +1,11 @@
+quarkus:
+  datasource:
+    db-kind: postgresql
+    username: ${POSTGRES_USER}
+    password: ${POSTGRES_PASSWORD}
+    jdbc:
+      url: jdbc:postgresql://omnom-db:${OMNOM_DB_PORT}/${POSTGRES_DB}
+
+  flyway:
+    migrate-at-start: true
+    locations: db/migration, db/testdata

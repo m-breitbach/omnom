@@ -1,0 +1,70 @@
+<form [formGroup]="table">
+  <table class="table table-border">
+    <thead class="text-nowrap">
+    <th>ID</th>
+    <th>Designation</th>
+    <th>Unit</th>
+    <th>Stable</th>
+    <th></th>
+    </thead>
+    <tbody>
+    <ng-container formArrayName="rows" *ngFor="let row of rows.controls ; let i=index">
+      <tr *ngIf="row.get('isEditable')?.value" [formGroupName]="i">
+        <td>
+          <mat-form-field>
+            <input matInput type="text" formControlName="ingredientID">
+          </mat-form-field>
+        </td>
+        <td>
+          <mat-form-field>
+            <input matInput type="text" formControlName="designation">
+          </mat-form-field>
+        </td>
+        <td>
+          <mat-form-field>
+            <mat-select formControlName="unit">
+              <mat-option value="GRAMS">grams</mat-option>
+              <mat-option value="MILLILITERS">milliliters</mat-option>
+              <mat-option value="PIECES">pieces</mat-option>
+            </mat-select>
+          </mat-form-field>
+        </td>
+        <td>
+          <mat-form-field>
+            <input matInput type="checkbox" formControlName="stable">
+          </mat-form-field>
+        </td>
+        <td>
+          <mat-icon class="delete" (click)="deleteRow(i)">delete</mat-icon>
+<!--          <mat-icon class="done" (click)="doneRow(row)">done</mat-icon>-->
+        </td>
+      </tr>
+      <tr *ngIf="!row.get('isEditable')?.value">
+        <td>
+          {{row.get('ingredientID')?.value}}
+        </td>
+        <td>
+          {{row.get('designation')?.value}}
+        </td>
+        <td>
+          {{row.get('unit')?.value}}
+        </td>
+        <td>
+          {{row.get('stable')?.value}}
+        </td>
+        <td>
+<!--          <mat-icon class="edit" (click)="editRow(row)">edit</mat-icon>-->
+        </td>
+      </tr>
+    </ng-container>
+    </tbody>
+  </table>
+  <div class="action-container">
+    <button mat-raised-button type="submit" (click)="addRow()">Add row</button>
+<!--    <button mat-raised-button [disabled]="table.invalid" type="submit" (click)="submitForm()">Submit</button>-->
+  </div>
+</form>
+<div class="output">
+  <p>Form Data:  {{table?.value | json}}</p>
+  <p>Is Valid: {{table.valid}}</p>
+</div>

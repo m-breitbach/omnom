@@ -1,5 +1,6 @@
 package de.kgb;
 
+import io.quarkus.security.identity.SecurityIdentity;
 import lombok.extern.slf4j.Slf4j;
 import org.eclipse.microprofile.openapi.annotations.enums.SchemaType;
 import org.eclipse.microprofile.openapi.annotations.media.Content;
@@ -28,6 +29,9 @@ public class IngredientResource {
     @Inject
     IngredientService ingredientService;
 
+    @Inject
+    SecurityIdentity identity;
+
     @GET
     @APIResponse(
         responseCode = "200",
@@ -38,7 +42,7 @@ public class IngredientResource {
         )
     )
     public Response get() {
-
+        log.info(identity.toString());
         return Response.ok(ingredientService.findAll()).build();
     }
 

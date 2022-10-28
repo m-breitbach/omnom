@@ -32,34 +32,47 @@ docker run -d \
   registry
 ```
 
-### Run locally
+### Run locally (all together)
 
-```
+```shell
+sudo echo "127.0.0.1 omnom-auth" >> /etc/hosts
 jabba use openjdk@1.17.0 
-pushd omnom-backend && mvn package -Dquarkus.profile=dev && popd
+pushd omnom-backend && mvn package -Dquarkus.profile=localhost && popd
 docker build -f omnom-backend/src/main/docker/Dockerfile.jvm -t omnom-backend ./omnom-backend
 pushd omnom-frontend && ng build --configuration development && popd
 docker build -f omnom-frontend/Dockerfile -t omnom-frontend ./omnom-frontend
 docker-compose up
 ```
 
+### Run locally (frontend)
+
+```shell
+sudo ng serve --host 127.0.0.1 --port 80
+```
+
 ### Push to registry
 
-```
+```shell
 docker tag omnom-backend:latest example.com:5000/omnom-backend 
 docker push example.com:5000/omnom-backend 
 ```
 
 ## Links
 
-### Database
+### Authentication / Keycloak
+
+* https://b-nova.com/en/home/content/sso-with-quarkus-angular-and-keycloak
+* https://quarkus.io/guides/security-authorization
+* https://jtuto.com/solved-keycloak-invalid-token-issuer-in-docker/
+
+### Database / Postgres
 
 * https://vladmihalcea.com/the-best-way-to-map-an-enum-type-with-jpa-and-hibernate/
 * https://herewecode.io/blog/create-a-postgresql-database-using-docker-compose/
 * https://stackoverflow.com/questions/35069027/docker-wait-for-postgresql-to-be-running
 * https://stackoverflow.com/questions/66325175/docker-container-with-postgres-warning-could-not-open-statistics-file-pg-stat
 
-### Backend
+### Backend / Quarkus
 
 * https://developers.redhat.com/articles/2022/02/03/build-rest-api-ground-quarkus-20
 * https://enterprisecraftsmanship.com/posts/having-the-domain-model-separate-from-the-persistence-model/
@@ -70,13 +83,22 @@ docker push example.com:5000/omnom-backend
 * https://howtodoinjava.com/resteasy/resteasy-exceptionmapper-example/
 * https://stackoverflow.com/questions/56959505/quarkus-blocked-by-cors-policy
 
-### Frontend
+### Frontend / Angular
 
 * https://www.syncfusion.com/blogs/post/how-to-build-a-crud-app-in-angular.aspx
 * https://balramchavan.medium.com/separating-production-and-development-http-urls-using-environment-ts-file-in-angular-4c2dd0c5a8b0
 * https://www.bannerbear.com/blog/what-is-a-cors-error-and-how-to-fix-it-3-ways/
 * https://angular.io/api/common/APP_BASE_HREF
+* https://getbootstrap.com/docs/4.0/components/navbar/
 * https://realfavicongenerator.net/
+* https://angular.io/guide/build
+* https://javascript.info/async-await
+* https://github.com/angular/angular-cli/issues/2375
+* https://stackoverflow.com/questions/57409807/edit-table-row-inline-on-click-of-edit-in-angular
+
+https://angular.io/guide/router
+https://angular.io/tutorial/toh-pt5
+https://medium.com/@astamataris/setting-up-routing-in-a-multi-module-angular-4-app-using-the-router-module-d8e610196443
 
 ### Docker
 

@@ -1,10 +1,43 @@
 quarkus:
+  log:
+    category:
+      "io.quarkus.oidc.runtime.OidcProvider":
+        level: TRACE
+        min-level: TRACE
+      "io.quarkus.oidc.runtime.OidcClientProvider":
+        level: TRACE
+        min-level: TRACE
+      "io.quarkus.oidc.runtime.OidcRecorder":
+        level: TRACE
+        min-level: TRACE
+  oidc:
+    auth-server-url: ${OIDC_AUTHSERVER}
+    client-id: ${OIDC_CLIENTID}
+    tenant-enabled: true # TODO: UNDERSTAND
+    credentials:
+      secret: ${OIDC_SECRET}
+    webapp-tenant:
+      auth-server-url: ${OIDC_AUTHSERVER}
+      client-id: ${OIDC_CLIENTID}
+      application-type: web_app # TODO: UNDERSTAND
+      roles:
+        source: accesstoken
+    tls:
+      verification: none # TODO: UNDERSTAND
+    token:
+      issuer: ${OIDC_AUTHSERVER} # TODO: UNDERSTAND, makes /etc/hosts/ fix obsolete?
+
   http:
-    port: 8080
+    port: ${OMNOM_BACKEND_PORT}
     cors: true
-  hibernate-orm:
-    database:
-      generation: none
+    auth:
+      policy:
+        user-policy:
+          roles-allowed: user
+      permission:
+        authenticated:
+          paths: /*
+          policy: user-policy
 
 mp:
   openapi:

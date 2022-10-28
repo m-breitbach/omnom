@@ -13,6 +13,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 @TestHTTPEndpoint(IngredientResource.class)
 class IngredientResourceTest {
 
+    @Disabled
     @Test
     void get_ShouldSucceed() {
         given()
@@ -20,6 +21,7 @@ class IngredientResourceTest {
             .then().statusCode(200);
     }
 
+    @Disabled
     @Test
     void getById_ShouldReturnSavedObject() {
         Ingredient ingredient = createSomeIngredient();
@@ -36,6 +38,7 @@ class IngredientResourceTest {
         assertThat(saved).isEqualTo(got);
     }
 
+    @Disabled
     @Test
     void getById_ShouldFailOnMissingObject() {
         given()
@@ -43,6 +46,7 @@ class IngredientResourceTest {
             .then().statusCode(404);
     }
 
+    @Disabled
     @Test
     void post_ShouldCreateValidObject() {
         Ingredient ingredient = createSomeIngredient();
@@ -67,6 +71,7 @@ class IngredientResourceTest {
             .then().statusCode(400);
     }
 
+    @Disabled
     @Test
     void put_ShouldSucceedOnValidUpdate() {
         Ingredient ingredient = createSomeIngredient();
@@ -102,6 +107,7 @@ class IngredientResourceTest {
             .then().statusCode(400);
     }
 
+    @Disabled
     @Test
     void put_ShouldFailOnIdMismatch() {
         Ingredient ingredient = createSomeIngredient();
