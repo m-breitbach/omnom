@@ -32,15 +32,15 @@ docker run -d \
   registry
 ```
 
-### Run locally (all together)
+### Run locally (full stack)
 
 ```shell
 sudo echo "127.0.0.1 omnom-auth" >> /etc/hosts
 jabba use openjdk@1.17.0 
-pushd omnom-backend && mvn package -Dquarkus.profile=localhost && popd
-docker build -f omnom-backend/src/main/docker/Dockerfile.jvm -t omnom-backend ./omnom-backend
-pushd omnom-frontend && ng build --configuration development && popd
-docker build -f omnom-frontend/Dockerfile -t omnom-frontend ./omnom-frontend
+mvn package -f "omnom-backend/pom.xml" -Dquarkus.profile=localhost -DskipTests
+#docker build -f omnom-backend/Dockerfile -t omnom-backend ./omnom-backend
+#pushd omnom-frontend; ng build --configuration development; popd
+#docker build -f omnom-frontend/Dockerfile -t omnom-frontend ./omnom-frontend
 docker-compose up
 ```
 
@@ -85,20 +85,22 @@ docker push example.com:5000/omnom-backend
 
 ### Frontend / Angular
 
-* https://www.syncfusion.com/blogs/post/how-to-build-a-crud-app-in-angular.aspx
+* https://www.techiediaries.com/angular/angular-9-8-crud-example-and-tutorial/
 * https://balramchavan.medium.com/separating-production-and-development-http-urls-using-environment-ts-file-in-angular-4c2dd0c5a8b0
 * https://www.bannerbear.com/blog/what-is-a-cors-error-and-how-to-fix-it-3-ways/
 * https://angular.io/api/common/APP_BASE_HREF
-* https://getbootstrap.com/docs/4.0/components/navbar/
+* https://getbootstrap.com/docs/5.0/components/navbar/
 * https://realfavicongenerator.net/
 * https://angular.io/guide/build
 * https://javascript.info/async-await
 * https://github.com/angular/angular-cli/issues/2375
-* https://stackoverflow.com/questions/57409807/edit-table-row-inline-on-click-of-edit-in-angular
 
-https://angular.io/guide/router
-https://angular.io/tutorial/toh-pt5
-https://medium.com/@astamataris/setting-up-routing-in-a-multi-module-angular-4-app-using-the-router-module-d8e610196443
+* https://stackoverflow.com/questions/57409807/edit-table-row-inline-on-click-of-edit-in-angular
+* https://vap1231.medium.com/inline-editable-table-using-dynamic-form-controls-in-angular-87eb24c0e5a5
+* https://learnwithtriveni.com/2022/07/17/add-or-remove-form-fields-dynamically/
+* https://angular.io/guide/router
+* https://angular.io/tutorial/toh-pt5
+* https://medium.com/@astamataris/setting-up-routing-in-a-multi-module-angular-4-app-using-the-router-module-d8e610196443
 
 ### Docker
 

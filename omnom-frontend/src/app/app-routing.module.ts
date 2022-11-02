@@ -2,7 +2,7 @@ import {NgModule} from '@angular/core';
 import {RouterModule, Routes} from '@angular/router';
 import {IngredientsModule} from "./ingredients/ingredients.module";
 import {HomeComponent} from "./ingredients/home/home.component";
-import {IngredientsTableComponent} from "./ingredients-table/ingredients-table.component";
+import {AddComponent} from "./ingredients/add/add.component";
 
 const routes: Routes = [
   {
@@ -15,8 +15,8 @@ const routes: Routes = [
     component: HomeComponent,
   },
   {
-    path: 'ingredients-table',
-    component: IngredientsTableComponent,
+    path: 'ingredients/add',
+    component: AddComponent,
   },
   {
     path: '**',

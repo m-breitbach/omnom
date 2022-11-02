@@ -1,0 +1,24 @@
+<div class="container">
+  <h1 class="mt-5">Add ingredient</h1>
+  <form [formGroup]="form" (ngSubmit)="submit()">
+    <div class="mb-3 form-group">
+      <label class="form-label" for="designationInput">Designation</label>
+      <input class="form-control" formControlName="designation" type="text" id="designationInput" maxlength="500">
+    </div>
+    <div class="mb-3 form-group">
+      <label class="form-label" for="unitInput">Unit</label>
+      <select class="form-control" formControlName="unit" type="text" id="unitInput">
+        <option value="GRAMS">g</option>
+        <option value="MILLILITERS">ml</option>
+        <option value="PIECES">pcs</option>
+      </select>
+    </div>
+    <div class="mb-3 form-check">
+      <input class="form-check-input" formControlName="stable" type="checkbox" id="stableInput" value="">
+      <label class="form-check-label" for="stableInput">
+        Stable
+      </label>
+    </div>
+    <button type="submit" [disabled]="!form.valid">Submit</button>
+  </form>
+</div>

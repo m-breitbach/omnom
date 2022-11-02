@@ -29,7 +29,9 @@ services:
       retries: 60
 
   omnom-backend:
-    image: omnom-backend:latest
+    build:
+      context: ./omnom-backend
+#    image: omnom-backend:latest
     env_file: .env
     ports:
       - "${OMNOM_BACKEND_PORT}:${OMNOM_BACKEND_PORT}"

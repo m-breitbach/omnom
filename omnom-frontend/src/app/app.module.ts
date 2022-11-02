@@ -6,11 +6,8 @@ import {AppRoutingModule} from './app-routing.module';
 import {AppComponent} from './app.component';
 import {KeycloakAngularModule, KeycloakService} from "keycloak-angular";
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { IngredientsTableComponent } from './ingredients-table/ingredients-table.component';
 import {ReactiveFormsModule} from "@angular/forms";
 import {MatInputModule} from "@angular/material/input";
-import {MatDatepickerModule} from "@angular/material/datepicker";
-import {MatNativeDateModule} from "@angular/material/core";
 import {MatButtonModule} from "@angular/material/button";
 import {MatIconModule} from "@angular/material/icon";
 import {MatSelectModule} from "@angular/material/select";
@@ -32,17 +29,13 @@ function initializeKeycloak(keycloak: KeycloakService) {
 
 @NgModule({
   declarations: [
-    AppComponent,
-    IngredientsTableComponent
+    AppComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     ReactiveFormsModule,
-    // BrowserAnimationsModule,
     MatInputModule,
-    // MatDatepickerModule,
-    // MatNativeDateModule,
     MatButtonModule,
     MatIconModule,
     MatSelectModule,

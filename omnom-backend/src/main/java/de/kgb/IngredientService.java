@@ -44,6 +44,7 @@ public class IngredientService {
 
     @Transactional
     public void update(@Valid Ingredient ingredient) {
+        log.info("IngredientService::update({})", ingredient);
 
         Optional<IngredientEntity> optional = repository.findByIdOptional(ingredient.getIngredientID());
         if ( optional.isEmpty() ) {
@@ -54,6 +55,18 @@ public class IngredientService {
         mapper.updateEntity(entity, ingredient);
         repository.persist(entity);
         mapper.updateDomain(ingredient, entity);
+    }
+
+    @Transactional
+    public boolean deleteById(@NonNull Integer ingredientID) {
+        log.info("IngredientService::deleteById({})", ingredientID);
+
+        Optional<IngredientEntity> optional = repository.findByIdOptional(ingredientID);
+        if ( optional.isEmpty() ) {
+            throw new ServiceException("No ingredient found for ID [%s]", ingredientID);
+        }
+
+        return repository.deleteById(ingredientID);
     }
 
 }

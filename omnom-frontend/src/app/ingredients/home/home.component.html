@@ -1,8 +1,9 @@
 <div class="container">
+  <h1 class="mt-5">Ingredients</h1>
   <table class="table">
     <thead>
     <tr>
-      <th scope="col">ID</th>
+      <th scope="col">#</th>
       <th scope="col">Designation</th>
       <th scope="col">Unit</th>
       <th scope="col">Stable</th>
@@ -10,39 +11,23 @@
     </tr>
     </thead>
     <tbody>
-    <tr *ngFor="let item of allIngredients; index as i">
-      <th scope="row">{{ item.ingredientID }}</th>
+    <tr *ngFor="let ingredient of ingredients; index as i">
+      <th scope="row">{{ ingredient.ingredientID }}</th>
       <td>
-        <input *ngIf="editMode && editIndex == i" [(ngModel)]="allIngredients[i].designation" />
-        <span *ngIf="!(editMode && editIndex == i)">{{ item.designation }}</span>
+        {{ ingredient.designation }}
       </td>
       <td>
-        <input *ngIf="editMode && editIndex == i" [(ngModel)]="allIngredients[i].unit" />
-        <span *ngIf="!(editMode && editIndex == i)">{{ item.unit }}</span>
+        {{ ingredient.unit }}
       </td>
       <td>
-        <input type="checkbox" *ngIf="editMode && editIndex == i" [(ngModel)]="allIngredients[i].stable" />
-        <span *ngIf="!(editMode && editIndex == i)">{{ item.stable}}</span>
+        {{ ingredient.stable}}
       </td>
       <td>
-        <button
-          class="btn page-secondary-action-btn"
-          *ngIf="editMode && editIndex == i"
-          (click)="editMode=false"
-          ng-click="cancel()"
-        > Cancel </button>
-        <button
-          class="btn page-primary-action-btn"
-          id="saveBtn"
-          type="submit"
-          *ngIf="editMode && editIndex == i"
-        > Save </button>
-        <a class="table-row-action edit-action" *ngIf="!editMode" (click)="enableEditMode($event, i)">
-          Edit
-        </a>
+<!--        <button type="button" [routerLink]="['/crud/update/', ingredient.ingredientID]">Update</button>-->
+        <button type="button" (click)="deleteByID(ingredient.ingredientID)">Remove</button>
       </td>
     </tr>
     </tbody>
   </table>
+  <button type="button" routerLink="/ingredients/add">Add ingredient</button>
 </div>
-<!--          (click)="saveSegment()"-->

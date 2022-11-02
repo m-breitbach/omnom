@@ -136,4 +136,27 @@ public class IngredientResource {
         return Response.status(Response.Status.NO_CONTENT).build();
     }
 
+    @DELETE
+    @Path("/{ingredientID}")
+    @APIResponse(
+        responseCode = "204",
+        description = "Ingredient deleted",
+        content = @Content(
+            mediaType = MediaType.APPLICATION_JSON,
+            schema = @Schema(type = SchemaType.OBJECT, implementation = Ingredient.class)
+        )
+    )
+    @APIResponse(
+        responseCode = "404",
+        description = "No ingredient found for provided ID",
+        content = @Content(mediaType = MediaType.APPLICATION_JSON)
+    )
+    public Response delete(
+        @Parameter(required = true) @PathParam("ingredientID") Integer ingredientID,
+        @NotNull @Valid Ingredient ingredient
+    ) {
+        ingredientService.deleteById(ingredientID);
+        return Response.status(Response.Status.NO_CONTENT).build();
+    }
+
 }

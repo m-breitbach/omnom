@@ -12,11 +12,10 @@ import {KeycloakService} from "keycloak-angular";
 export class HomeComponent implements OnInit {
   public isLoggedIn = false;
   public userProfile: KeycloakProfile | null = null;
-  allIngredients: Ingredient[] = [];
-  editMode: boolean = false;
-  editIndex: number = 0;
 
-  constructor(private ingredientsService: IngredientsService, private readonly keycloak: KeycloakService) {}
+  ingredients: Ingredient[] = [];
+
+  constructor(public ingredientsService: IngredientsService, private readonly keycloak: KeycloakService) {}
 
   async ngOnInit() {
     this.isLoggedIn = await this.keycloak.isLoggedIn();
@@ -30,14 +29,12 @@ export class HomeComponent implements OnInit {
 
   get() {
     this.ingredientsService.get().subscribe(
-      (data) => { this.allIngredients = data; }
+      (result: Ingredient[]) => { this.ingredients = result; }
     )
   }
 
-  enableEditMode(e: any, i: number) {
-    this.editMode = true;
-    this.editIndex = i;
-    console.log(i, e)
+  deleteByID(ingredientID: number) {
+    this.ingredientsService.delete(ingredientID).subscribe()
+    this.ngOnInit()
   }
-
 }
