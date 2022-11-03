@@ -96,6 +96,7 @@ docker push example.com:5000/omnom-backend
 * https://javascript.info/async-await
 * https://github.com/angular/angular-cli/issues/2375
 * https://stackoverflow.com/questions/40148102/angular-2-disabled-controls-do-not-get-included-in-the-form-value
+* https://bootstrapcreative.com/how-to-center-a-div-horizontally-in-bootstrap-4/
 
 * https://stackoverflow.com/questions/57409807/edit-table-row-inline-on-click-of-edit-in-angular
 * https://vap1231.medium.com/inline-editable-table-using-dynamic-form-controls-in-angular-87eb24c0e5a5
