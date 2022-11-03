@@ -23,6 +23,8 @@ jobs:
         distribution: adopt
     - name: Checkout
       uses: actions/checkout@v3
+    - name: Setup Environment
+      run: set -a; source ../.env; set +a;
     - name: Build
       run: mvn clean package -Dquarkus.profile=prod
     - name: Build Docker
@@ -43,6 +45,8 @@ jobs:
       uses: actions/setup-node@v3.5.1
       with:
         node-version: 18
+    - name: Install Dependencies
+      run: npm install
     - name: Checkout
       uses: actions/checkout@v3
     - name: Build
