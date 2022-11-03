@@ -23,7 +23,7 @@
         {{ ingredient.stable}}
       </td>
       <td>
-<!--        <button type="button" [routerLink]="['/crud/update/', ingredient.ingredientID]">Update</button>-->
+        <button type="button" [routerLink]="['/ingredients/edit/', ingredient.ingredientID]">Edit</button>
         <button type="button" (click)="deleteByID(ingredient.ingredientID)">Remove</button>
       </td>
     </tr>

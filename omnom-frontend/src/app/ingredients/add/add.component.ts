@@ -8,25 +8,22 @@ import {Router} from "@angular/router"
   templateUrl: "./add.component.html",
   styleUrls: ["./add.component.scss"],
 })
-export class AddComponent implements OnInit {
+export class AddComponent {
   form: FormGroup
 
   constructor(
-    public fb: FormBuilder,
+    private fb: FormBuilder,
     private router: Router,
-    public ingredientService: IngredientsService,
+    private ingredientService: IngredientsService,
   ) {
     this.form = this.fb.group({
       designation: ["", Validators.required],
       unit: ["GRAMS", Validators.required],
-      stable: [false],
+      stable: [false, Validators.required],
     })
   }
-
-  ngOnInit(): void { }
 
   submit() {
     this.ingredientService.add(this.form.value).subscribe(() => this.router.navigateByUrl("/ingredients/home"))
   }
-
 }

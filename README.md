@@ -36,8 +36,9 @@ docker run -d \
 
 ```shell
 sudo echo "127.0.0.1 omnom-auth" >> /etc/hosts
+set -a; source .env; set +a;
 jabba use openjdk@1.17.0 
-mvn package -f "omnom-backend/pom.xml" -Dquarkus.profile=localhost -DskipTests
+pushd omnom-backend; mvn clean package -Dquarkus.profile=localhost -DskipTests; popd
 #docker build -f omnom-backend/Dockerfile -t omnom-backend ./omnom-backend
 #pushd omnom-frontend; ng build --configuration development; popd
 #docker build -f omnom-frontend/Dockerfile -t omnom-frontend ./omnom-frontend
@@ -94,6 +95,7 @@ docker push example.com:5000/omnom-backend
 * https://angular.io/guide/build
 * https://javascript.info/async-await
 * https://github.com/angular/angular-cli/issues/2375
+* https://stackoverflow.com/questions/40148102/angular-2-disabled-controls-do-not-get-included-in-the-form-value
 
 * https://stackoverflow.com/questions/57409807/edit-table-row-inline-on-click-of-edit-in-angular
 * https://vap1231.medium.com/inline-editable-table-using-dynamic-form-controls-in-angular-87eb24c0e5a5

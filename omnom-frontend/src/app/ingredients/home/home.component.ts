@@ -34,7 +34,7 @@ export class HomeComponent implements OnInit {
   }
 
   deleteByID(ingredientID: number) {
-    this.ingredientsService.delete(ingredientID).subscribe()
+    this.ingredientsService.deleteByID(ingredientID).subscribe()
     this.ngOnInit()
   }
 }

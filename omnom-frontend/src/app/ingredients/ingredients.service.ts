@@ -22,6 +22,13 @@ export class IngredientsService {
       )
   }
 
+  getByID(ingredientID: number): Observable<Ingredient> {
+    return this.http.get<Ingredient>(`${environment.backendURL}/ingredients/${ingredientID}`)
+      .pipe(
+        catchError(this.errorHandler)
+      )
+  }
+
   add(ingredient: Ingredient): Observable<Ingredient> {
     return this.http.post<Ingredient>(`${environment.backendURL}/ingredients`, JSON.stringify(ingredient), this.httpOptions)
       .pipe(
@@ -29,9 +36,15 @@ export class IngredientsService {
       )
   }
 
-  delete(ingredientID: number){
-    console.log(`${environment.backendURL}/ingredients/${ingredientID}`)
-    return this.http.delete(`${environment.backendURL}/ingredients/${ingredientID}`, this.httpOptions)
+  edit(ingredient: Ingredient): Observable<Ingredient> {
+    return this.http.put<Ingredient>(`${environment.backendURL}/ingredients/${ingredient.ingredientID}`, JSON.stringify(ingredient), this.httpOptions)
+      .pipe(
+        catchError(this.errorHandler)
+      )
+  }
+
+  deleteByID(ingredientID: number): Observable<Ingredient>{
+    return this.http.delete<Ingredient>(`${environment.backendURL}/ingredients/${ingredientID}`)
       .pipe(
         catchError(this.errorHandler)
       )
