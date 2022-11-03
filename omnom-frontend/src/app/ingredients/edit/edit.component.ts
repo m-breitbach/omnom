@@ -12,7 +12,7 @@ import {Subscription} from "rxjs"
 })
 export class EditComponent implements OnInit, OnDestroy {
   public form: FormGroup
-  private paramsub!: Subscription
+  private paramSub: Subscription | undefined
 
   constructor(
     private fb: FormBuilder,
@@ -29,7 +29,7 @@ export class EditComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
-    this.paramsub = this.route.params.subscribe((params: Params) => {
+    this.paramSub = this.route.params.subscribe((params: Params) => {
       this.ingredientsService.getByID(+params["ingredientID"]).subscribe((result: Ingredient) => {
         this.form.setValue({
           ingredientID: result.ingredientID,
@@ -42,11 +42,13 @@ export class EditComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy() {
-    this.paramsub.unsubscribe()
+    if (this.paramSub) {
+      this.paramSub.unsubscribe()
+    }
   }
 
   submit() {
-    this.ingredientsService.edit(this.form.getRawValue()).subscribe(() => this.router.navigateByUrl("/ingredients/home"))
+    this.ingredientsService.edit(this.form.getRawValue()).subscribe(() => this.router.navigate(["/ingredients/home"]))
   }
 
 }

@@ -1,4 +1,4 @@
-import {Component, OnInit} from "@angular/core"
+import {Component} from "@angular/core"
 import {FormBuilder, FormGroup, Validators} from "@angular/forms"
 import {IngredientsService} from "../ingredients.service"
 import {Router} from "@angular/router"
@@ -24,6 +24,6 @@ export class AddComponent {
   }
 
   submit() {
-    this.ingredientService.add(this.form.value).subscribe(() => this.router.navigateByUrl("/ingredients/home"))
+    this.ingredientService.add(this.form.value).subscribe(() => this.router.navigate(["/ingredients/home"]))
   }
 }
