@@ -66,6 +66,11 @@ docker push example.com:5000/omnom-backend
 * https://quarkus.io/guides/security-authorization
 * https://jtuto.com/solved-keycloak-invalid-token-issuer-in-docker/
 
+* https://sgitario.github.io/quarkus-app-with-react-and-keycloak/
+* https://www.keycloak.org/server/importExport
+* https://quarkus.io/guides/security-openid-connect
+* https://quarkus.io/guides/security-openid-connect-web-authentication
+
 ### Database / Postgres
 
 * https://vladmihalcea.com/the-best-way-to-map-an-enum-type-with-jpa-and-hibernate/
@@ -97,6 +102,7 @@ docker push example.com:5000/omnom-backend
 * https://github.com/angular/angular-cli/issues/2375
 * https://stackoverflow.com/questions/40148102/angular-2-disabled-controls-do-not-get-included-in-the-form-value
 * https://bootstrapcreative.com/how-to-center-a-div-horizontally-in-bootstrap-4/
+* https://www.digitalocean.com/community/tutorials/angular-data-binding-angular
 
 * https://stackoverflow.com/questions/57409807/edit-table-row-inline-on-click-of-edit-in-angular
 * https://vap1231.medium.com/inline-editable-table-using-dynamic-form-controls-in-angular-87eb24c0e5a5
